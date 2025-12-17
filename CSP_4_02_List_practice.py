@@ -1,3 +1,5 @@
+from syslog import LOG_LOCAL1
+
 
 def bookends(li: list):
     """
@@ -10,6 +12,9 @@ def bookends(li: list):
     :return:
     """
 
+    x = [li.pop(0), li.pop(len(li)-1)]
+    y = li
+    return (x)
 
 
 def inOrder(li : list):
@@ -18,7 +23,10 @@ def inOrder(li : list):
     :param list:
     :return:
     """
-
+    for i in range (len(li)-1):
+        if li[i] > li[i + 1]:
+            return False
+    return True
 
 
 def find(li: list, target : int):
@@ -38,7 +46,11 @@ def find(li: list, target : int):
     :param target:
     :return:
     """
-
+    for i in range (len(li)):
+        last=li[i]
+        if target==last:
+            return (i)
+    return (-1)
 
 def removeLowest(li):
     """
@@ -48,6 +60,13 @@ def removeLowest(li):
     :param list:
     :return:
     """
+    lowest =0
+    for i in range (len(li)):
+        if li[i] < li[lowest]:
+            lowest = i
+    new=li.pop(lowest)
+    print(new, li)
+removeLowest([6,1,4,2,3])
 
 
 def keepOrder(li: list, value):
@@ -60,6 +79,11 @@ def keepOrder(li: list, value):
     :return:
     """
 
+    for i in range(len(li)):
+        if value < li[i]:
+            li.insert(i,value)
+            return
+    li.append(value)
 
 def merge(l1:list, l2:list):
     """
@@ -70,4 +94,6 @@ def merge(l1:list, l2:list):
     :param l2:
     :return:
     """
-    
+    newLi = l1 + l2
+    newLi.sort()
+    return newLi
